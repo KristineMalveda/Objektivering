@@ -29,5 +29,7 @@ public class UserInterface implements Runnable {
 
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 		container.setLayout(layout);
+		
+		
 	}
 }

@@ -1,24 +1,24 @@
 
-public class CustomerData {
+public class CustomerDataBean {
 	private String orderDate;
 	private String region;
 	private String rep1;
 	private String rep2;
 	private String item;
-	private int units;
-	private double unitCost;
-	private double total;
+	private String units;
+	private String unitCost;
+	private String total;
 	
 	
-	public CustomerData() {
-		this.orderDate = "";
-		this.region= "";
-		this.rep1 = "";
-		this.rep2= "";
-		this.item= "";
-		this.units = 0;
-		this.unitCost= 0;
-		this.total = 0;
+	public CustomerDataBean(String date, String region, String rep1, String rep2, String item, String units, String unitCost, String total) {
+		this.orderDate = date;
+		this.region= region;
+		this.rep1 = rep1;
+		this.rep2= rep2;
+		this.item= item;
+		this.units = units;
+		this.unitCost= unitCost;
+		this.total = total;
 		
 	}
 
@@ -62,27 +62,27 @@ public class CustomerData {
 		this.item = item;
 	}
 
-	public int getUnits() {
+	public String getUnits() {
 		return units;
 	}
 
-	public void setUnits(int units) {
+	public void setUnits(String units) {
 		this.units = units;
 	}
 
-	public double getUnitCost() {
+	public String getUnitCost() {
 		return unitCost;
 	}
 
-	public void setUnitCost(double unitCost) {
+	public void setUnitCost(String unitCost) {
 		this.unitCost = unitCost;
 	}
 
-	public double getTotal() {
+	public String getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(String total) {
 		this.total = total;
 	}
 
