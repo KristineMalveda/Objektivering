@@ -1,5 +1,5 @@
 
-public class CustomerDataBean {
+public class CustomerData {
 	private String orderDate;
 	private String region;
 	private String rep1;
@@ -10,15 +10,9 @@ public class CustomerDataBean {
 	private String total;
 	
 	
-	public CustomerDataBean(String date, String region, String rep1, String rep2, String item, String units, String unitCost, String total) {
+	public CustomerData(String date) {
 		this.orderDate = date;
-		this.region= region;
-		this.rep1 = rep1;
-		this.rep2= rep2;
-		this.item= item;
-		this.units = units;
-		this.unitCost= unitCost;
-		this.total = total;
+	
 		
 	}
 
