@@ -11,7 +11,7 @@ public class ButtonEvent implements ActionListener {
 		
 		
 		if(e.getSource() == showButton) {
-			CsvReader.getWholeSheet();
+		//	CsvReader.getWholeSheet();
 			System.out.println("test show button");	
 		}
 		

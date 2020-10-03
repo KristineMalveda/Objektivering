@@ -21,12 +21,14 @@ import javax.swing.table.TableModel;
 
 public class UserInterface implements Runnable {
 
-	JButton showButton, sortButton, saveButton;
+	JButton  saveButton;
 
 	private JFrame frame;
 	private JPanel buttonPanel, tablePanel;
-	private JTable jtable;
-	ArrayList<String> columnnames;
+	//ArrayList<String> columnnames;
+	CustomerTableModel model;
+
+	private JTable jt;
 
 	public UserInterface() {
 
@@ -42,6 +44,23 @@ public class UserInterface implements Runnable {
 
 		frame.pack();
 		frame.setVisible(true);
+		init();
+	}
+
+	private void init() {
+		// TODO Auto-generated method stub
+		ArrayList<CustomerData> mywholeSheet = CsvReader.loadCSV();
+	
+
+		
+		
+		//create the model
+        CustomerTableModel model = new CustomerTableModel(mywholeSheet);
+        //create the table
+        jt.setModel (model);
+          
+
+
 	}
 
 	private void createComponents(Container container) {
@@ -55,41 +74,23 @@ public class UserInterface implements Runnable {
 
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		showButton = new JButton("Show Table");
-		showButton.addActionListener(new ButtonEvent());
-		sortButton = new JButton("Sort Alphabetically");
-		sortButton.addActionListener(new ButtonEvent());
+		
 		saveButton = new JButton("Save the file");
 		saveButton.addActionListener(new ButtonEvent());
 
-		buttonPanel.add(showButton);
-		buttonPanel.add(sortButton);
+		
 		buttonPanel.add(saveButton);
 
 		container.add(buttonPanel, BorderLayout.NORTH);
 
-		String column[] = { "OrderDate", "Region", "Rep1", "Rep2", "Item", "Units", "UnitCost", "Total" };
-		String data[][] = { { "101", "Amit", "670000","101", "Amit", "670000", "k", "m" }, { "102", "Jai", "780000","101", "Amit", "670000", "k", "m"  }, { "101", "Sachin", "700000","101", "Amit", "670000", "k" , "m" } };
-
-		JTable jt = new JTable(data, column);
+		jt = new JTable(model);
+		
+		jt.setAutoCreateRowSorter(true);
 		jt.setBounds(30, 40, 200, 300);
 		JScrollPane sp = new JScrollPane(jt);
 		tablePanel.add(sp);
 		tablePanel.setSize(300, 400);
 		tablePanel.setVisible(true);
-
-		
-		  ArrayList<ArrayList<String>> myWholeSheet = CsvReader.getWholeSheet();
-		  
-		  for (int i = 0; i < myWholeSheet.size(); i++) { ArrayList<String> myRow =
- 	  myWholeSheet.get(i);
-		  
-		  for (int j = 0; j < myRow.size(); j++) {
-		 
-		  } System.out.println(myRow);	  
-		  }
-		 
-		//columnnames = myWholeSheet.get(0);
 
 		container.add(tablePanel, BorderLayout.SOUTH);
 
@@ -100,14 +101,7 @@ public class UserInterface implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if (e.getSource() == showButton) {
-				CsvReader.getWholeSheet();
-
-			}
-			if (e.getSource() == sortButton) {
-
-				System.out.println("Sort the file");
-			}
+		
 			if (e.getSource() == saveButton) {
 
 				System.out.println("Save the file");

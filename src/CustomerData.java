@@ -9,12 +9,7 @@ public class CustomerData {
 	private String unitCost;
 	private String total;
 	
-	
-	public CustomerData(String date) {
-		this.orderDate = date;
-	
-		
-	}
+
 
 	public String getOrderDate() {
 		return orderDate;
