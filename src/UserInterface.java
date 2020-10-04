@@ -2,11 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -16,17 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 
 public class UserInterface implements Runnable {
 
-	JButton  saveButton;
+	JButton saveButton;
 
 	private JFrame frame;
 	private JPanel buttonPanel, tablePanel;
-	//ArrayList<String> columnnames;
-	CustomerTableModel model;
+	// ArrayList<String> columnnames;
+	public static CustomerTableModel model;
 
 	private JTable jt;
 
@@ -37,7 +31,7 @@ public class UserInterface implements Runnable {
 	@Override
 	public void run() {
 		frame = new JFrame("CSV");
-		frame.setPreferredSize(new Dimension(700, 200));
+		frame.setPreferredSize(new Dimension(700, 400));
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		createComponents(frame.getContentPane());
@@ -50,16 +44,12 @@ public class UserInterface implements Runnable {
 	private void init() {
 		// TODO Auto-generated method stub
 		ArrayList<CustomerData> mywholeSheet = CsvReader.loadCSV();
-	
 
-		
-		
-		//create the model
-        CustomerTableModel model = new CustomerTableModel(mywholeSheet);
-        //create the table
-        jt.setModel (model);
-          
+		// create the model
+		model = new CustomerTableModel(mywholeSheet);
 
+		// create the table
+		jt.setModel(model);
 
 	}
 
@@ -74,38 +64,25 @@ public class UserInterface implements Runnable {
 
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		
 		saveButton = new JButton("Save the file");
 		saveButton.addActionListener(new ButtonEvent());
 
-		
 		buttonPanel.add(saveButton);
 
 		container.add(buttonPanel, BorderLayout.NORTH);
 
 		jt = new JTable(model);
-		
+
 		jt.setAutoCreateRowSorter(true);
 		jt.setBounds(30, 40, 200, 300);
 		JScrollPane sp = new JScrollPane(jt);
+		sp.setPreferredSize(new Dimension(700, 500));
 		tablePanel.add(sp);
-		tablePanel.setSize(300, 400);
 		tablePanel.setVisible(true);
 
-		container.add(tablePanel, BorderLayout.SOUTH);
+		container.add(tablePanel, BorderLayout.CENTER);
 
 	}
 
-	public class ButtonEvent implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		
-			if (e.getSource() == saveButton) {
-
-				System.out.println("Save the file");
-			}
-		}
-	}
 }
