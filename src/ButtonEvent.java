@@ -1,29 +1,22 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 
 public class ButtonEvent implements ActionListener {
 
-	private static JButton showButton, sortButton, saveButton;
-	
+
+
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent ae) {
 		
-		
-		if(e.getSource() == showButton) {
-		//	CsvReader.getWholeSheet();
-			System.out.println("test show button");	
+		if (ae.getActionCommand().equals(UserInterface.getCommand())) {
+			System.out.println("HEllo");
 		}
 		
-		if(e.getSource() == sortButton) {
-			
-			System.out.println("Sort the file");
-		}
-		if(e.getSource() == saveButton) {
-			
-			System.out.println("Save the file");
-		}
+		
 
 	}
-
+	
+	
+	
 }

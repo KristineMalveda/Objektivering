@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 public class CustomerTableModel extends AbstractTableModel {
 
 	private final List<CustomerData> customerList;
-	private final String[] columnNames = { "OrderDate", "Region", "Rep1", "Rep2", "Item", "Units", "UnitCost",
+	private static final String[] columnNames = { "OrderDate", "Region", "Rep1", "Rep2", "Item", "Units", "UnitCost",
 			"Total" };
 
 	@SuppressWarnings("rawtypes")
@@ -27,9 +27,8 @@ public class CustomerTableModel extends AbstractTableModel {
 	public Class<?> getColumnClass(int columnIndex) {
 		return columnClass[columnIndex];
 	}
-
-	@Override
-	public int getColumnCount() {
+@Override
+	public  int getColumnCount() {
 		return columnNames.length;
 	}
 
@@ -64,8 +63,6 @@ public class CustomerTableModel extends AbstractTableModel {
 		return null;
 	}
 	
-	public static void updateCSV() {
-		
-	}
 
+	
 }
