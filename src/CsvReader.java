@@ -3,6 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
@@ -39,50 +41,38 @@ public class CsvReader {
 	}
 
 	public static void addData(String data1, String data2, String data3, String data4, String data5, String data6,
-			String data7, String data8) throws IOException, CsvValidationException {
+			String data7, String data8) {
 
-		
+		String[] datas = { data1, data2, data3, data4, data5, data6, data7, data8 };
 
-	
-		String[] datas = {data1, data2, data3, data4, data5, data6, data7, data8 };
 		try {
-			loadCSV();
-			//reader = new CSVReader(new FileReader(csvFile));
-			output = new FileWriter(csvFile, true);
-			write = new CSVWriter(output);
-
+		
 			
+			output = new FileWriter(csvFile, true);
+
 			CustomerData addData = new CustomerData(data1, data2, data3, data4, data5, data6, data7, data8);
 			customerList.add(addData);
 
-			output.append("\r\n");
-			output.append(data1);
-			output.append(",");
-			output.append(data2);
-			output.append(",");
-			output.append(data3);
-			output.append(",");
-			output.append(data4);
-			output.append(",");
-			output.append(data5);
-			output.append(",");
-			output.append(data6);
-			output.append(",");
-			output.append(data7);
-			output.append(",");
-			output.append(data8);
-			output.append(",");
-			
-			
-			
 
-			//write.writeNext(datas, true);
+			output.append("\r\n");
+			for (int i = 0; i < datas.length; i++) {
+				output.append(datas[i].trim());
+				output.append(",");
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		output.flush();
-		output.close();
+		try {
+			output.flush();
+			output.close();
+			JOptionPane.showMessageDialog(null, "Record Saved");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }

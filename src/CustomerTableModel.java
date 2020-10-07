@@ -27,8 +27,9 @@ public class CustomerTableModel extends AbstractTableModel {
 	public Class<?> getColumnClass(int columnIndex) {
 		return columnClass[columnIndex];
 	}
-@Override
-	public  int getColumnCount() {
+
+	@Override
+	public int getColumnCount() {
 		return columnNames.length;
 	}
 
@@ -62,7 +63,5 @@ public class CustomerTableModel extends AbstractTableModel {
 
 		return null;
 	}
-	
 
-	
 }
