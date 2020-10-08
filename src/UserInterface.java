@@ -52,12 +52,12 @@ public class UserInterface implements Runnable {
 		// create the model
 		model = new CustomerTableModel(mywholeSheet);
 
-		//sort Rows by clicking column headers
-//		jt.setRowSorter(new TableRowSorter<CustomerTableModel>(model));
-//		 int[] selection = jt.getSelectedRows();
-//		   for (int i = 0; i < selection.length; i++) {
-//		     selection[i] = jt.convertRowIndexToModel(selection[i]);
-//	   }
+		// sort Rows by clicking column headers
+		jt.setRowSorter(new TableRowSorter<CustomerTableModel>(model));
+		int[] selection = jt.getSelectedRows();
+		for (int i = 0; i < selection.length; i++) {
+			selection[i] = jt.convertRowIndexToModel(selection[i]);
+		}
 
 		// create the table
 		jt.setModel(model);
@@ -68,14 +68,12 @@ public class UserInterface implements Runnable {
 
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 
-	
 		buttonPanel = new JPanel();
 		tablePanel = new JPanel();
 		formPanel = new JPanel();
 
 		container.setLayout(layout);
 
-	
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		addButton = new JButton("Add new Customer");
 
@@ -87,8 +85,8 @@ public class UserInterface implements Runnable {
 
 		// jtable
 		jt = new JTable(model);
-	JTableHeader header = jt.getTableHeader();
-		header.addMouseListener(new MouseEventListener(jt));
+//	JTableHeader header = jt.getTableHeader();
+//		header.addMouseListener(new MouseEventListener(jt));
 
 		// jt.setAutoCreateRowSorter(true);
 		jt.setBounds(30, 40, 200, 300);
