@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,10 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.table.JTableHeader;
+//import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 
 public class UserInterface implements Runnable {
 
-	JButton  addButton;
+	JButton addButton;
 
 	private JFrame frame;
 	private JPanel buttonPanel, tablePanel, formPanel;
@@ -30,7 +32,6 @@ public class UserInterface implements Runnable {
 
 	}
 
-
 	@Override
 	public void run() {
 		frame = new JFrame("CSV");
@@ -40,6 +41,7 @@ public class UserInterface implements Runnable {
 		createComponents(frame.getContentPane());
 		frame.pack();
 		frame.setVisible(true);
+
 		init();
 	}
 
@@ -50,6 +52,13 @@ public class UserInterface implements Runnable {
 		// create the model
 		model = new CustomerTableModel(mywholeSheet);
 
+		//sort Rows by clicking column headers
+//		jt.setRowSorter(new TableRowSorter<CustomerTableModel>(model));
+//		 int[] selection = jt.getSelectedRows();
+//		   for (int i = 0; i < selection.length; i++) {
+//		     selection[i] = jt.convertRowIndexToModel(selection[i]);
+//	   }
+
 		// create the table
 		jt.setModel(model);
 
@@ -59,15 +68,14 @@ public class UserInterface implements Runnable {
 
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 
-		// create a GUI with corresponding action listeners
+	
 		buttonPanel = new JPanel();
 		tablePanel = new JPanel();
 		formPanel = new JPanel();
 
 		container.setLayout(layout);
 
-		// buttons
-
+	
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		addButton = new JButton("Add new Customer");
 
@@ -75,13 +83,14 @@ public class UserInterface implements Runnable {
 		addButton.addActionListener(event);
 		addButton.setActionCommand("add");
 
-	
-
 		buttonPanel.add(addButton);
-		
+
 		// jtable
 		jt = new JTable(model);
-		jt.setAutoCreateRowSorter(true);
+	JTableHeader header = jt.getTableHeader();
+		header.addMouseListener(new MouseEventListener(jt));
+
+		// jt.setAutoCreateRowSorter(true);
 		jt.setBounds(30, 40, 200, 300);
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setPreferredSize(new Dimension(700, 500));
@@ -112,18 +121,17 @@ public class UserInterface implements Runnable {
 
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-	
 
 			if (ae.getSource() == addButton) {
 				for (int i = 0; i < txt.size(); i++) {
 
 				}
-				
+
 				CsvReader.addData(txt.get(0).getText(), txt.get(1).getText(), txt.get(2).getText(),
 						txt.get(3).getText(), txt.get(4).getText(), txt.get(5).getText(), txt.get(6).getText(),
 						txt.get(7).getText());
 
-			} 
+			}
 		}
 	}
 }

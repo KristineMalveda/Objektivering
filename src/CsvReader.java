@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
 /**
@@ -18,7 +16,6 @@ public class CsvReader {
 	static ArrayList<CustomerData> customerList = new ArrayList<>();
 	static String csvFile = "sample.csv";
 	static CSVReader reader = null;
-	static CSVWriter write;
 	static FileWriter output;
 
 	public static ArrayList<CustomerData> loadCSV() {
@@ -39,32 +36,25 @@ public class CsvReader {
 		}
 		return customerList;
 	}
-
-	public static void addData(String data1, String data2, String data3, String data4, String data5, String data6,
+public static void addData(String data1, String data2, String data3, String data4, String data5, String data6,
 			String data7, String data8) {
 
 		String[] datas = { data1, data2, data3, data4, data5, data6, data7, data8 };
 
 		try {
-		
-			
+
 			output = new FileWriter(csvFile, true);
 
 			CustomerData addData = new CustomerData(data1, data2, data3, data4, data5, data6, data7, data8);
 			customerList.add(addData);
 
-
 			output.append("\r\n");
-			for (int i = 0; i < datas.length; i++) {
-				output.append(datas[i].trim());
+			for (int i = 0; i < datas.length - 1; i++) {
+				output.append(datas[i]);
 				output.append(",");
 			}
+			output.append(data8);
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			output.flush();
 			output.close();
 			JOptionPane.showMessageDialog(null, "Record Saved");

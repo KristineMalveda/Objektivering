@@ -15,6 +15,7 @@ public class CustomerTableModel extends AbstractTableModel {
 
 	public CustomerTableModel(List<CustomerData> customerList) {
 		customerList.remove(0);
+
 		this.customerList = customerList;
 	}
 
@@ -64,4 +65,7 @@ public class CustomerTableModel extends AbstractTableModel {
 		return null;
 	}
 
+	public boolean isCellEditable(int row, int col) {
+		return true;
+	}
 }
