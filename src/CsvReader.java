@@ -36,7 +36,8 @@ public class CsvReader {
 		}
 		return customerList;
 	}
-public static void addData(String data1, String data2, String data3, String data4, String data5, String data6,
+
+	public static void addData(String data1, String data2, String data3, String data4, String data5, String data6,
 			String data7, String data8) {
 
 		String[] datas = { data1, data2, data3, data4, data5, data6, data7, data8 };

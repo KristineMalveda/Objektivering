@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class TableHeaderMouseListener extends MouseAdapter {
@@ -79,7 +78,7 @@ public class TableHeaderMouseListener extends MouseAdapter {
 			Collections.sort(customerList, new Comparator<CustomerData>() {
 				public int compare(CustomerData o1, CustomerData o2) {
 					// TODO Auto-generated method stub
-					return o1.getUnitCost().compareTo(o2.getUnitCost());
+					return o1.getUnits().compareTo(o2.getUnits());
 				};
 
 			});
@@ -88,7 +87,7 @@ public class TableHeaderMouseListener extends MouseAdapter {
 			Collections.sort(customerList, new Comparator<CustomerData>() {
 				public int compare(CustomerData o1, CustomerData o2) {
 					// TODO Auto-generated method stub
-					return o1.getUnits().compareTo(o2.getUnits());
+					return o1.getUnitCost().compareTo(o2.getUnitCost());
 				};
 
 			});
