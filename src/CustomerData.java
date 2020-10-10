@@ -85,4 +85,5 @@ public class CustomerData {
 		this.total = total;
 	}
 
+	
 }

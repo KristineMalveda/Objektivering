@@ -15,8 +15,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.table.JTableHeader;
-//import javax.swing.table.JTableHeader;
-import javax.swing.table.TableRowSorter;
 
 public class UserInterface implements Runnable {
 
@@ -53,14 +51,17 @@ public class UserInterface implements Runnable {
 		model = new CustomerTableModel(mywholeSheet);
 
 		// sort Rows by clicking column headers
-		jt.setRowSorter(new TableRowSorter<CustomerTableModel>(model));
-		int[] selection = jt.getSelectedRows();
-		for (int i = 0; i < selection.length; i++) {
-			selection[i] = jt.convertRowIndexToModel(selection[i]);
-		}
+//		jt.setRowSorter(new TableRowSorter<CustomerTableModel>(model));
+//		int[] selection = jt.getSelectedRows();
+//		for (int i = 0; i < selection.length; i++) {
+//			selection[i] = jt.convertRowIndexToModel(selection[i]);
+//		}
 
 		// create the table
 		jt.setModel(model);
+		
+		JTableHeader header = jt.getTableHeader();
+        header.addMouseListener(new TableHeaderMouseListener(jt));
 
 	}
 
@@ -85,10 +86,7 @@ public class UserInterface implements Runnable {
 
 		// jtable
 		jt = new JTable(model);
-//	JTableHeader header = jt.getTableHeader();
-//		header.addMouseListener(new MouseEventListener(jt));
 
-		// jt.setAutoCreateRowSorter(true);
 		jt.setBounds(30, 40, 200, 300);
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setPreferredSize(new Dimension(700, 500));
